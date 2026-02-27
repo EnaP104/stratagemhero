@@ -134,7 +134,7 @@ useLayoutEffect(() => {
           <span
             key={index}
             className={`select-none duration-50 ${isError ? 'text-[#ff2d2d]' :
-                index < currentInput.length ? 'opacity-100 text-yellow-400' : 'opacity-50'
+                index < currentInput.length ? 'opacity-100 text-[#FFE710]' : 'opacity-50'
               }`}
           >
             <i className={`text-6xl ml-1 ${getArrowSymbol(direction)}`}></i>

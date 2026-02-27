@@ -105,12 +105,12 @@ export const Menu = () => {
 
 
               {/* Enlace a GitHub */}
-              <div className="absolute bottom-4 right-4 flex items-center gap-2 opacity-50">
+              <div className="absolute bottom-4 right-4 flex items-center gap-2 opacity-40">
                 <a href="https://github.com/AngelP104"
                   target='_blank'
                   rel="noreferrer"
                   className='hover:text-white opacity-100'>
-                  <i className="fa-brands fa-github mr-2"></i>My GitHub
+                  <i className="fa-brands fa-github mr-2"></i>
                 </a>
               </div>
 

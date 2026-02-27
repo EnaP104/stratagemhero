@@ -50,7 +50,7 @@ export const ModalInfo = ({ stratagemCodesMap, onClose }) => {
               alt={strat.name}
               width="40"
               draggable="false"
-              className="border-2 border-yellow-400"
+              className="border-2 border-[#FFE710]"
             />
 
             <div>

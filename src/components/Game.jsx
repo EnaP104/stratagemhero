@@ -251,9 +251,9 @@ export const Game = ({ showMenu, stopMusic, playMusic, musicEnabled, highscore, 
           <div className="text-center">
             <h2 className="text-5xl">Game Over!</h2>
             <br />
-            <p className="text-4xl">Final Score: <span className="text-yellow-400">{score}</span></p>
+            <p className="text-4xl">Final Score: <span className="text-[#FFE710]">{score}</span></p>
             <br />
-            {isNewHighscore && <p className="text-3xl text-yellow-400 animate-pulse">New Highscore!</p>}
+            {isNewHighscore && <p className="text-3xl text-[#FFE710] animate-pulse">New Highscore!</p>}
           </div>
         </>
       ) : (
@@ -262,11 +262,11 @@ export const Game = ({ showMenu, stopMusic, playMusic, musicEnabled, highscore, 
             <div className="flex flex-col items-center text-right justify-center h-full text-4xl">
               <p className="text-2xl">Get ready for Round {roundNumber + 2}</p>
               <div className="text-right">
-                {transitionStep >= 1 && <p>Round bonus <span className="text-yellow-400">{lastRoundStats.scoreRoundBonus}</span></p>}
-                {transitionStep >= 2 && <p>Time bonus <span className="text-yellow-400">{lastRoundStats.scoreTimeBonus}</span></p>}
-                {transitionStep >= 3 && <><p>Perfect round <span className="text-yellow-400">{lastRoundStats.scorePerfectRound}</span></p>
+                {transitionStep >= 1 && <p>Round bonus <span className="text-[#FFE710]">{lastRoundStats.scoreRoundBonus}</span></p>}
+                {transitionStep >= 2 && <p>Time bonus <span className="text-[#FFE710]">{lastRoundStats.scoreTimeBonus}</span></p>}
+                {transitionStep >= 3 && <><p>Perfect round <span className="text-[#FFE710]">{lastRoundStats.scorePerfectRound}</span></p>
                   <br />
-                  <p> TOTAL  <span className="text-yellow-400">{score}</span></p>
+                  <p> TOTAL  <span className="text-[#FFE710]">{score}</span></p>
                 </>
                 }
               </div>
@@ -278,8 +278,8 @@ export const Game = ({ showMenu, stopMusic, playMusic, musicEnabled, highscore, 
               <h2 className="text-4xl">Round {roundNumber + 1}</h2>
               <div className="text-right">
 
-                <h2 className="text-4xl">Score: <span className="text-yellow-400">{score}</span></h2>
-                <h2 className="text-lg">Highscore: <span className="text-yellow-400">{highscore}</span></h2>
+                <h2 className="text-4xl">Score: <span className="text-[#FFE710]">{score}</span></h2>
+                <h2 className="text-lg">Highscore: <span className="text-[#FFE710]">{highscore}</span></h2>
 
               </div>
             </div>
@@ -296,7 +296,7 @@ export const Game = ({ showMenu, stopMusic, playMusic, musicEnabled, highscore, 
                       return (
                         <div key={stratagem.id} className="">
                           {/* <p>{stratagem.name} - Code: {stratagem.code}</p> */}
-                          <div className={` flex justify-center items-center w-fit  ${index === 0 ? 'border-yellow-400 border-4 bg-neutral-800' : ''}`}>
+                          <div className={` flex justify-center items-center w-fit  ${index === 0 ? 'border-[#FFE710] border-4 bg-neutral-800' : ''}`}>
                             <img
                               src={`/stratagem_icons/${stratagem.name}.svg`}
                               alt={stratagem.name}
@@ -308,7 +308,7 @@ export const Game = ({ showMenu, stopMusic, playMusic, musicEnabled, highscore, 
                       );
                     })}
                   </div>
-                  <div className="bg-yellow-400 text-black w-full text-3xl">
+                  <div className="bg-[#FFE710] text-black w-full text-3xl">
                     <p className="select-none">
                       {currentStratagems[0].name}
                     </p>
@@ -322,7 +322,7 @@ export const Game = ({ showMenu, stopMusic, playMusic, musicEnabled, highscore, 
                   </div>
                   <div className="h-4 bg-neutral-700 mt-4 overflow-hidden w-full">
                     <div
-                      className="h-4 bg-yellow-400 transition-all duration-100"
+                      className="h-4 bg-[#FFE710] transition-all duration-100"
                       style={{ width: `${(currentTime / timer) * 100}%` }}
                     />
                   </div>

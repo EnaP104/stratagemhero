@@ -24,6 +24,10 @@ import sfxOrbitalLaser from '../sounds/sfxOrbitalLaser.mp3';
 import sfxOrbitalRailcannonStrike from '../sounds/sfxOrbitalRailcannonStrike.mp3';
 import hellpodGround from '../sounds/hellpodGround.ogg';
 import stratagemBallGround from '../sounds/stratagemBallGround.ogg';
+import death from '../sounds/death.ogg';
+import request1 from '../sounds/request1.ogg';
+import request2 from '../sounds/request2.ogg';
+import request3 from '../sounds/request3.ogg';
 
 export const SimulatorPad = () => {
 
@@ -40,6 +44,10 @@ export const SimulatorPad = () => {
   const [playInputCancel] = useSound(inputCancel, { preload: true });
   const [playHellpodGround] = useSound(hellpodGround, { preload: true });
   const [playStratagemBallGround] = useSound(stratagemBallGround, { preload: true });
+  const [playDeath] = useSound(death, { preload: true });
+  const [playRequest1] = useSound(request1, { preload: true });
+  const [playRequest2] = useSound(request2, { preload: true });
+  const [playRequest3] = useSound(request3, { preload: true });
 
   //Stratagem sounds
   const [playSfx500kg] = useSound(sfx500kg, { preload: true });
@@ -66,8 +74,6 @@ export const SimulatorPad = () => {
     dswds: playSfxOrbitalLaser,
     dwssd: playSfxOrbitalRailcannonStrike // Orbital Railcannon Strike
   };
-
-
 
   //States
   const [showStratagemSidebar, setShowStratagemSidebar] = useState(false);
@@ -100,6 +106,23 @@ export const SimulatorPad = () => {
     playHellpodGround();
   }
 
+  const playDeathSfx = () => {
+    playDeath();
+  }
+
+  const playReinforceSfx = () => {
+    // Play a random sound between different sounds
+    //3 is the maximum and 1 is the minimum
+    let randomInputSfx = Math.floor(Math.random() * ((3 - 1 + 1)) + 1);
+    if (randomInputSfx === 1) {
+        playRequest1();
+      } else if (randomInputSfx === 2) {
+        playRequest2();
+      } else if (randomInputSfx === 3) {
+        playRequest3();
+      }
+  }
+
   const resetInputButton = () => {
     setButtonInput("");
     playInputCancel();
@@ -130,7 +153,7 @@ export const SimulatorPad = () => {
     } else {
 
       // Play a random sound between different sounds
-      //4 is tthe maximum and 1 is the minimum
+      //4 is the maximum and 1 is the minimum
       let randomInputSfx = Math.floor(Math.random() * ((4 - 1 + 1)) + 1);
       if (randomInputSfx === 1) {
         playInput1();
@@ -244,26 +267,26 @@ export const SimulatorPad = () => {
         {/* CONTENIDO */}
         <div className="relative z-10 flex items-center justify-center min-h-[100dvh]">
 
-        {/* Botón usar Stratagem Hero */}
-        <div className="absolute top-4 right-4 flex items-center gap-2">
-          <button className='border-2 border-neutral-200 px-1' onClick={() => navigate("/")}>
-            <i className='fa-sharp fa-solid fa-gamepad text-lg text-white'></i>
-          </button>
-          <p className="text-white mr-1">Arcade</p>
-        </div>
-        {/* Botón mostrar sidebar estratagemas */}
-        <div className="absolute top-4 left-4 flex items-center gap-2 bg-black/30 pr-1" onClick={() => showSidebar()}>
-          <div className='border-2 border-neutral-200 px-1'>
-            <i className='fa-sharp fa-solid fa-globe text-2xl text-white'></i>
+          {/* Botón usar Stratagem Hero */}
+          <div className="absolute top-4 right-4 flex items-center">
+            <button className='border-2 border-neutral-200 px-1' onClick={() => navigate("/")}>
+              <i className='fa-sharp fa-solid fa-left-from-bracket text-2xl text-white'></i>
+            </button>
+            <p className="text-white mr-1"></p>
           </div>
-          <p className="text-white text-sm mr-1">STRATAGEMS</p>
-        </div>
+          {/* Botón mostrar sidebar estratagemas */}
+          <div className="absolute top-4 left-4 flex items-center gap-2 bg-black/30 pr-1" onClick={() => showSidebar()}>
+            <div className='border-2 border-neutral-200 px-1'>
+              <i className='fa-sharp fa-solid fa-globe text-2xl text-white'></i>
+            </div>
+            <p className="text-white text-sm mr-1">STRATAGEMS</p>
+          </div>
 
-        {/* Botón cambiar modo de uso (BUTTONS / SLIDE) */}
-        {/* WORK IN PROGRESS */}
+          {/* Botón cambiar modo de uso (BUTTONS / SLIDE) */}
+          {/* WORK IN PROGRESS */}
 
 
-        {/* <div className="absolute top-4 right-4 flex items-center gap-2">
+          {/* <div className="absolute top-4 right-4 flex items-center gap-2">
           <button className='border-2 border-neutral-200 px-1' onClick={() => changeUsageMode()}>
             {buttonsUsageMode ?
               <>
@@ -277,8 +300,8 @@ export const SimulatorPad = () => {
           <p className="text-white mr-1">Usage Mode</p>
         </div> */}
 
-        {/* Enter FullScreen */}
-        {/* <div className="absolute top-16 right-4 flex items-center gap-2">
+          {/* Enter FullScreen */}
+          {/* <div className="absolute top-16 right-4 flex items-center gap-2">
             <button className='border-2 border-neutral-200 px-2' onClick={() => handleFullscreen.enter}>
 
               <i className='fa-sharp fa-solid fa-expand text-2xl text-white'></i>
@@ -287,126 +310,136 @@ export const SimulatorPad = () => {
             <p className="text-white mr-1">Fullscreen</p>
           </div> */}
 
-        {/* Show Modal Info */}
-        <div className="absolute top-16 right-4 flex items-center gap-2">
-          <button className='border-2 border-neutral-200 px-1' onClick={() => setShowModalInfo(!showModalInfo)}>
-
-            <i className='fa-sharp fa-solid fa-music text-2xl text-white'></i>
-
-          </button>
-          <p className="text-white mr-1">SFX</p>
-        </div>
-
-        {/* Play hellpod touches ground */}
-        <div className="fixed bottom-[calc(4rem+env(safe-area-inset-bottom))] right-4 flex items-center gap-2" onClick={() => playHellpodSfx()}>
-          <button className='border-2 border-neutral-200 px-1'>
-
-            <i className='fa-sharp fa-solid fa-sunset text-2xl text-white'></i>
-
-          </button>
-          <p className="text-white mr-1">Hellpod</p>
-        </div>
-
-        {/* Reset stratagem */}
-        <div className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 flex items-center gap-2" onClick={() => resetInputButton()}>
-          <button className='border-2 border-neutral-200 px-2' >
-
-            <i className='fa-sharp fa-solid fa-xmark text-2xl text-white'></i>
-
-          </button>
-          <p className="text-white mr-1">Reset</p>
-        </div>
-
-        {showStratagemSidebar && (
-          <>
-            <div className="absolute top-16 left-4">
-              <StratagemSidebar filteredCode={buttonInput} />
-            </div>
-          </>
-        )}
-
-
-        {/* ARROWS if button mode is selected (buttonsUsageMode === true) */}
-        {buttonsUsageMode && !matchedStratagem ?
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none min-h-[100dvh]">
-            <div className="flex flex-col items-center text-7xl text-white pointer-events-auto">
-              {/* UP */}
-              <div className="border-2 border-white/30 active:border-yellow-400 active:text-yellow-400 focus:outline-none focus:ring-0 active:outline-none
-" onClick={() => handleButtonPress("w")}>
-                <div className="mx-5 my-2">
-                  <i className="fa-sharp fa-solid fa-up"></i>
-                </div>
-              </div>
-
-              <div className="flex">
-                {/* LEFT */}
-                <div className="border-2 border-white/30 active:border-yellow-400 active:text-yellow-400" onClick={() => handleButtonPress("a")} >
-                  <div className="mx-4 my-2">
-                    <i className="fa-sharp fa-solid fa-left"></i>
-                  </div>
-                </div>
-                {/* Separador */}
-                <div className="mx-10 px-2">
-                </div>
-
-                {/* RIGHT */}
-                <div className="border-2 border-white/30 active:border-yellow-400 active:text-yellow-400" onClick={() => handleButtonPress("d")}>
-                  <div className="mx-4 my-2">
-                    <i className="fa-sharp fa-solid fa-right"></i>
-                  </div>
-                </div>
-              </div>
-
-              {/* DOWN */}
-              <div className="border-2 border-white/30 active:border-yellow-400 active:text-yellow-400" onClick={() => handleButtonPress("s")}>
-                <div className="mx-5 my-2">
-                  <i className="fa-sharp fa-solid fa-down"></i>
-                </div>
-              </div>
-            </div>
-          </div> : <div>
-
-          </div>}
-
-        {/* Arrows selected until the next stratagem pops up */}
-        {buttonInput !== "" && (
-          <>
-            <div className="absolute top-36 right-4 text-center text-xl text-white">
-              <p>{[...buttonInput].map((dir, i) => {
-                return (
-                  <i key={i} className={`${getArrowSymbol(dir)} ml-1`}></i>
-
-                )
-              })}
-              </p>
-            </div>
-          </>
-        )}
-
-        {/* Found stratagem */}
-        {matchedStratagem && (
-          <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-               bg-black/70 p-3 text-white text-center z-50"
-            onClick={() => stratagemSfxPlayer(buttonInput)}
-          >
-            <p className="text-2xl my-1">{matchedStratagem.name}</p>
-            <img
-              src={`/stratagem_icons/${matchedStratagem.name}.svg`}
-              alt={matchedStratagem.name}
-              width="180px"
-              draggable="false"
-              className='border-4 border-yellow-400 mx-auto mb-2'
-            />
+          {/* Death and reinforce icons */}
+          <div className="absolute top-16 right-16 flex items-center">
+            <button className='border-2 border-neutral-200 px-1' onClick={() => playDeathSfx()}>
+              <i className="fa-sharp fa-solid fa-skull text-2xl text-white"></i>
+            </button>
           </div>
-        )}
-        {/* Modal Info */}
-        {showModalInfo && (
-          <ModalInfo
-            stratagemCodesMap={stratagemSoundMap}
-            onClose={() => setShowModalInfo(false)}
-          />
-        )}
+          <div className="absolute top-16 right-5 flex items-center">
+            <button className='border-2 border-neutral-200 px-1' onClick={() => playReinforceSfx()}>
+              <i className="fa-sharp fa-solid fa-street-view text-2xl text-white"></i>
+            </button>
+          </div>
+
+          {/* Show Modal Info */}
+          <div className="absolute top-4 right-16 flex items-center">
+            <button className='border-2 border-neutral-200 px-1' onClick={() => setShowModalInfo(!showModalInfo)}>
+
+              <i className='fa-sharp fa-solid fa-music text-2xl text-white'></i>
+
+            </button>
+          </div>
+
+          {/* Play hellpod touches ground */}
+          <div className="fixed bottom-[calc(4rem+env(safe-area-inset-bottom))] right-4 flex items-center gap-2" onClick={() => playHellpodSfx()}>
+            <button className='border-2 border-neutral-200 px-1'>
+
+              <i className='fa-sharp fa-solid fa-sunset text-2xl text-white'></i>
+
+            </button>
+            <p className="text-white mr-1">Hellpod</p>
+          </div>
+
+          {/* Reset stratagem */}
+          <div className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 flex items-center gap-2" onClick={() => resetInputButton()}>
+            <button className='border-2 border-neutral-200 px-2' >
+
+              <i className='fa-sharp fa-solid fa-xmark text-2xl text-white'></i>
+
+            </button>
+            <p className="text-white mr-1">Reset</p>
+          </div>
+
+          {showStratagemSidebar && (
+            <>
+              <div className="absolute top-16 left-4">
+                <StratagemSidebar filteredCode={buttonInput} />
+              </div>
+            </>
+          )}
+
+
+          {/* ARROWS if button mode is selected (buttonsUsageMode === true) */}
+          {buttonsUsageMode && !matchedStratagem ?
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none min-h-[100dvh]">
+              <div className="flex flex-col items-center text-7xl text-white pointer-events-auto">
+                {/* UP */}
+                <div className="border-2 border-white/30 active:border-[#FFE710] active:text-[#FFE710]" onClick={() => handleButtonPress("w")}>
+                  <div className="mx-5 my-2">
+                    <i className="fa-sharp fa-solid fa-up"></i>
+                  </div>
+                </div>
+
+                <div className="flex">
+                  {/* LEFT */}
+                  <div className="border-2 border-white/30 active:border-[#FFE710] active:text-[#FFE710]" onClick={() => handleButtonPress("a")} >
+                    <div className="mx-4 my-2">
+                      <i className="fa-sharp fa-solid fa-left"></i>
+                    </div>
+                  </div>
+                  {/* Separador */}
+                  <div className="mx-10 px-2">
+                  </div>
+
+                  {/* RIGHT */}
+                  <div className="border-2 border-white/30 active:border-[#FFE710] active:text-[#FFE710]" onClick={() => handleButtonPress("d")}>
+                    <div className="mx-4 my-2">
+                      <i className="fa-sharp fa-solid fa-right"></i>
+                    </div>
+                  </div>
+                </div>
+
+                {/* DOWN */}
+                <div className="border-2 border-white/30 active:border-[#FFE710] active:text-[#FFE710]" onClick={() => handleButtonPress("s")}>
+                  <div className="mx-5 my-2">
+                    <i className="fa-sharp fa-solid fa-down"></i>
+                  </div>
+                </div>
+              </div>
+            </div> : <div>
+
+            </div>}
+
+          {/* Arrows selected until the next stratagem pops up */}
+          {buttonInput !== "" && (
+            <>
+              <div className="absolute top-36 right-4 text-center text-xl text-white">
+                <p>{[...buttonInput].map((dir, i) => {
+                  return (
+                    <i key={i} className={`${getArrowSymbol(dir)} ml-1`}></i>
+
+                  )
+                })}
+                </p>
+              </div>
+            </>
+          )}
+
+          {/* Found stratagem */}
+          {matchedStratagem && (
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+               bg-black/70 p-3 text-white text-center z-50"
+              onClick={() => stratagemSfxPlayer(buttonInput)}
+            >
+              <p className="text-2xl my-1">{matchedStratagem.name}</p>
+              <img
+                src={`/stratagem_icons/${matchedStratagem.name}.svg`}
+                alt={matchedStratagem.name}
+                width="180px"
+                draggable="false"
+                className='border-4 border-[#FFE710] mx-auto mb-2'
+              />
+            </div>
+          )}
+          {/* Modal Info */}
+          {showModalInfo && (
+            <ModalInfo
+              stratagemCodesMap={stratagemSoundMap}
+              onClose={() => setShowModalInfo(false)}
+            />
+          )}
 
         </div>
       </div>
