@@ -473,5 +473,15 @@
         "id": "fed_grenade_launcher",
         "name": "Fed Grenade Launcher",
         "code": "sawaww"
+    },
+    {
+        "id": "bastion",
+        "name": "Bastion",
+        "code": "asdsaswsw"
+    },
+    {
+        "id": "Leveller",
+        "name": "Leveller",
+        "code": "ssaws"
     }
 ]
