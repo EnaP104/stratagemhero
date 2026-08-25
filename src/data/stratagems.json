@@ -483,5 +483,40 @@
         "id": "Leveller",
         "name": "Leveller",
         "code": "ssaws"
+    },
+    {
+        "id": "cremator",
+        "name": "Cremator",
+        "code": "ssdsww"
+    },
+    {
+        "id": "gas_mortar_sentry",
+        "name": "Gas Mortar Sentry",
+        "code": "swdsa"
+    },
+    {
+        "id": "breakthrough_exosuit",
+        "name": "Breakthrough Exosuit",
+        "code": "asdadsw"
+    },
+    {
+        "id": "bullet_storm",
+        "name": "Bullet Storm",
+        "code": "sasdwa"
+    },
+    {
+        "id": "lumberer_exosuit",
+        "name": "Lumberer Exosuit",
+        "code": "asdwdaw"
+    },
+    {
+        "id": "supply_frv",
+        "name": "Supply FRV",
+        "code": "asaaswd"
+    },
+    {
+        "id": "incinerator_frv",
+        "name": "Incinerator FRV",
+        "code": "asdasww"
     }
 ]
